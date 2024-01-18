@@ -11,24 +11,21 @@ Go语言绑定[Godot引擎](https://godotengine.org/)'s [GDNative API](https://g
 
 **注意：** 这些绑定目前仍在开发中。不是所有的设计， 实施或文档是最终的。欢迎提出意见/建议（参见 GitHub 问题）。 API 可能会发生变化。
 
-Usage
+用法
 -----
-The Godot Engine can interface with code written in Go using the GDNative module.
-It works by using Go's ability to compile code as a shared library (`.so`, `.dylib`, `.dll`),
-which the Godot Engine can load to call Go methods. 
+Godot 引擎可以使用 GDNative 模块与用 Go 编写的代码进行交互。
+它的工作原理是使用 Go 将代码编译为共享库 (`.so`, `.dylib`, `.dll`),
+Godot引擎可以加载它来调用Go方法。
 
-The godot-go library provides you with a method called `godot.AutoRegister`, which will
-allow you to expose a Go struct that follows the `godot.Class` interface to the Godot
-Engine when it loads your shared library. It also provides bindings to all of
-the available Godot Engine classes and their methods, so you can call Godot 
-functions from your Go code.
+godot-go库提供了一个名为`godot. AutoRegister`的方法。
+它将允许你向Godot暴露一个遵循`godot.Class`接口的Go结构体加载共享库时使用的引擎。
+它还提供了对所有的可用的Godot引擎类及其方法，因此您可以调用Godot-Go代码中的函数。
 
-# Setup
+# 设置
 `go get github.com/shadowapex/godot-go/godot`
 
-# Build
-When you're ready to build your code as a dynamic library that can be imported into
-Godot, use the instructions below depending on your platform.     
+# 构建
+当您准备将代码构建为可以导入Godot的动态库时，请根据您的平台使用下面的说明。
 
 ## Linux
 `go build -v -buildmode=c-shared -o libgodot.so <your_go_library>.go`    
@@ -36,12 +33,10 @@ Godot, use the instructions below depending on your platform.
 ## Mac OS X
 `go build -v -buildmode=c-shared -o libgodot.dylib <your_go_library>.go`    
 
-# Tutorial
-To write a Go shared library that can be used in Godot, you'll first need to create 
-a `.go` file that will act as the entrypoint to your library. This file *must*
-have `package main` as the package name along with `main()` and `init()` functions
-defined. The `main()` function will be empty, but is required to compile it
-as a shared library:
+# 教程
+要编写可在Godot中使用的Go共享库，您首先需要创建一个`.go`文件将作为库的入口点。
+这个文件*必须*将`package main`与`main()`和`init()`函数一起作为包的名称定义的。
+`main()`函数将是空的，但需要编译它作为一个共享库:
 
 ```go
 package main
@@ -53,9 +48,9 @@ func main() {
 }
 ```
 
-After setting this up, we can define a new struct that we want to be available
-in Godot. In our struct, we can embed one of any available Godot class so it implements
-the `godot.Class` interface. Note that embedding multiple Godot structs is not supported.
+设置好这些之后，我们可以定义一个我们想要可用的新结构体Godot。
+在我们的结构体中，我们可以嵌入任何可用的Godot类之一，以便它实现`godot.Class`接口。
+请注意，不支持嵌入多个Godot结构体。
 
 ```go
 // SimpleClass is a simple go struct that can be attached to a Godot Node2D object.
@@ -64,11 +59,9 @@ type SimpleClass struct {
 }
 ```
 
-Once we have our struct defined, we can now attach method receivers to our struct.
-All methods attached to this struct will be callable from Godot, provided that they
-take and/or return built-in or godot types. Let's go ahead and define a method 
-receiver for the `X_ready` method, which Godot will call when our node enters
-the scene. 
+一旦我们定义了结构体，我们现在可以将方法接收器附加到我们的结构体。
+附加到这个结构体的所有方法都可以从Godot调用，前提是它们获取和/或返回内置或godot类型。
+让我们继续定义一个方法`X_ready`方法的接收器，当我们的节点进入时，Godot将调用它加载场景。
 
 ```go
 // X_ready is called as soon as the node enters the scene.
