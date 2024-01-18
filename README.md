@@ -124,39 +124,35 @@ func init() {
 
 ![](images/tutorial03.png)
 
-Select your shared library file from your project directory.
+从项目目录中选择共享库文件。
 
 ![](images/tutorial04.png)
 
-Click the save icon and then click "Save As.."
+点击保存图标，然后点击“另存为..”
 
 ![](images/tutorial05.png)    
 ![](images/tutorial06.png)    
 
-Save your GDNativeLibrary resource to your project directory. This file simply
-contains the paths to the shared library objects for each platform you want to
-support.
+将您的GDNativeLibrary资源保存到您的项目目录。
+这个文件很简单包含您想要的每个平台的共享库对象的路径支持。
 
 ![](images/tutorial07.png)    
 
-Now create a new node that you want to attach your Go library to.
+现在创建一个要将Go库附加到其上的新节点。
 
 ![](images/tutorial08.png)    
 ![](images/tutorial09.png)    
 
-Click the add script icon to attach your Go library to the node.
+单击add script图标将Go库附加到节点。
 
 ![](images/tutorial10.png)    
 
-Select "NativeScript" as the script language, and enter the name of the struct 
-that you registered in your Go library that you would like to be attached to this
-node. You should also select "Built-in Script", so this setting is built in to
-the scene.
+选择"NativeScript"作为脚本语言，并输入结构体的名称你在Go库中注册的，你想要附加到这个节点。
+你还应该选择"Built-in Script"（内置脚本），这样这个设置就内置到场景。
 
 ![](images/tutorial11.png)    
 
-With your node selected, you can now attach our GDNativeLibrary resource that we
-created earlier to this node.
+选择好你的节点后，你现在可以连接我们的GDNativeLibrary资源在此节点之前创建。
 
 ![](images/tutorial12.png)    
 ![](images/tutorial13.png)    
