@@ -7,7 +7,7 @@
 
 Godot-Go
 ========
-Go language bindings for the [Godot Engine](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers).
+ [Godot引擎](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers)的Go语言绑定.
 
 **NOTE:** These bindings are currently still under development. Not all of the design,
 implementation, or documentation is final. Comments/suggestions are welcome (see GitHub issues).
