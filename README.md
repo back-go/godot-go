@@ -70,9 +70,8 @@ func (h *SimpleClass) X_ready() {
 }
 ```
 
-Now that we have a struct and a method defined, we need to create a constructor
-function that will return a new instance of our `SimpleClass` struct. This method 
-will be called by Godot whenever it needs to create a new instance of your object.
+现在我们定义了一个结构体和一个方法，我们需要创建一个构造函数这个函数将返回一个`SimpleClass`结构体的新实例。
+这个Godot方法将在需要创建对象的新实例时调用。
 
 ```go
 // NewSimpleClass is a constructor that we can pass to godot.
@@ -81,11 +80,9 @@ func NewSimpleClass() godot.Class {
 }
 ```
 
-Now that we have a constructor function, we can register the function with
-Godot, so it knows how to create a new instance of your struct and call its
-methods. We can register the class by calling the `godot.AutoRegister` method 
-in our `init()` function, which is a special Go function that will be executed
-when our shared library is loaded, and passing our constructor function.
+现在我们有了一个构造函数，我们可以注册这个函数Godot，所以它知道如何创建结构体的新实例并调用它方法。
+我们可以通过调用 `godot.AutoRegister` 来注册这个类的方法在我们的`init()`函数中，
+这是一个将被执行的特殊的Go函数，当我们的共享库加载并传递我们的构造函数时。
 
 ```go
 func init() {
@@ -94,12 +91,10 @@ func init() {
 }
 ```
 
-The `godot.AutoRegister` function works by calling your constructor and inspecting
-your Godot struct with reflection for all public receiver methods and struct
-fields. It will then register the constructor and your struct's methods and fields
-with Godot through Godot's GDNative C API.
+`godot.AutoRegister`函数通过调用构造函数并进行检查来工作你的Godot结构体具有所有公共接收器方法和结构体的反射字段。
+然后，它将注册构造函数以及结构体的方法和字段通过Godot的GDNative C API使用Godot。
 
-Now we can compile our project into a shared library:
+现在我们可以将项目编译为共享库了:
 
 **Linux**    
 `go build -v -buildmode=c-shared -o libgodot.so <your_go_library>.go`    
@@ -107,26 +102,25 @@ Now we can compile our project into a shared library:
 **Mac OS X**    
 `go build -v -buildmode=c-shared -o libgodot.dylib <your_go_library>.go`    
 
-This will create a shared library object that you can use in Godot! To learn how
-to set up your library in Godot, refer to the section below.
+这将创建一个可以在Godot中使用的共享库对象!
+学习如何要在Godot中设置库，请参阅下面的部分。
 
-# How do I use native scripts from the editor?
+# 如何使用编辑器中的原生脚本?
 
-First, copy your `.so`, `.dylib`, and/or `.dll` library that you compiled into
-your project folder.
+首先，复制你的`.so`, `.dylib`和/或编译成的`.dll`库到你的项目文件夹。
 
-Create a new `GDNativeLibrary` resource by clicking the new icon in the inspector.
-A `GDNativeLibrary` resource is a platform-agnostic abstraction of our native library. 
-With it, it allows us to specify different shared library object files for different
-platforms, such as `.so` for Linux platforms, `.dylib` for Mac, and `.dll` for Windows.
+通过点击inspector中的新图标创建一个新的`GDNativeLibrary`资源。
+`GDNativeLibrary`资源是我们本地库的平台无关抽象。
+使用它，它允许我们为不同的共享库对象文件指定不同的文件平台，
+例如在Linux平台是`.so`。在Mac上是`.dylib`，在Windows上是`.dll`。
 ![](images/tutorial01.png)
 
-Select `GDNativeLibrary` from the list of resource types.
+从资源类型列表中选择`gdnativellibrary`。
 ![](images/tutorial02.png)
 
-Select the folder icon next to the platform that you want to support in the inspector.
-For Linux platforms, you'll want to select a `.so` file, `.dylib` for Mac, and `.dll` for
-Windows. You can add each shared library file for each platform you want to support.
+在检查器中选择你想要支持的平台旁边的文件夹图标。
+对于Linux平台，你需要选择一个`.so`文件，`.dylib`用于Mac， `.dll`用于Windows。
+您可以为想要支持的每个平台添加每个共享库文件。
 
 ![](images/tutorial03.png)
 
