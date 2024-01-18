@@ -9,9 +9,7 @@ Godot-Go
 ========
  [Godot引擎](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers)的Go语言绑定.
 
-**NOTE:** These bindings are currently still under development. Not all of the design,
-implementation, or documentation is final. Comments/suggestions are welcome (see GitHub issues).
-The API is subject to change.
+**注意：** 这些绑定目前仍在开发中。不是所有的设计， 实施或文档是最终的。欢迎提出意见/建议（参见 GitHub 问题）。 API 可能会发生变化。
 
 Usage
 -----
